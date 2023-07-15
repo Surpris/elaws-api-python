@@ -6,57 +6,12 @@ from typing import List, Optional, Dict
 from xml.etree import ElementTree as ET
 from xmlschema import XMLSchema
 
+from .common import Result
 
 SCHEMA_PATH: str = os.path.join(
     os.path.dirname(__file__),
     "../schema/list_of_laws_and_ordinances_schema.xsd"
 )
-
-
-class Result:
-    """
-    Processing result information.
-
-    Attributes
-    ----------
-    code : int, optional
-        Code of the processing result.
-    message : str, optional
-        Message of the processing result.
-    """
-
-    def __init__(self, code: Optional[int] = None, message: Optional[str] = None) -> None:
-        """
-        Initialize the Result object.
-
-        Parameters
-        ----------
-        code : int, optional
-            Code of the processing result.
-        message : str, optional
-            Message of the processing result.
-        """
-        self.code: Optional[int] = code
-        self.message: Optional[str] = message
-
-    @staticmethod
-    def from_elem(elem: ET.Element):
-        """
-        Static method to create a Result object from an XML element.
-
-        Parameters
-        ----------
-        elem : xml.etree.ElementTree.Element
-            XML element that contains the law information.
-
-        Returns
-        -------
-        Result
-            the Result object including the information in `elem`.
-        """
-        code = int(elem.find("Code").text)
-        message = elem.find("Message").text
-        return Result(code, message)
 
 
 class LawNameInfoElement:
@@ -408,7 +363,7 @@ class ListOfLaws:
     def __init__(self, xml_content: str) -> None:
         """
         Initialize the DataRoot object by loading XML data from the specified path.
-        
+
         Parameters
         ----------
         xml_content : str
@@ -451,7 +406,7 @@ class ListOfLaws:
         if appl_data_element is None:
             raise ValueError("ApplData is not found.")
         self._appl_data = ApplData.from_elem(appl_data_element)
-    
+
     def find_element_by_law_id(self, law_id: str) -> Optional[LawNameInfoElement]:
         """
         Find the law information element by law id.
