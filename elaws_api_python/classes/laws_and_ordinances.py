@@ -444,8 +444,7 @@ class ListOfLaws:
         result_element = root.find("Result")
         if result_element is None:
             raise ValueError("Result is not found.")
-        self._result.code = int(result_element.find("Code").text)
-        self._result.message = result_element.find("Message").text
+        self._result = Result.from_elem(result_element)
 
         # ApplData
         appl_data_element = root.find("ApplData")
