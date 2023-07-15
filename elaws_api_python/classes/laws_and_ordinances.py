@@ -421,7 +421,7 @@ class ListOfLaws:
         if os.path.exists(xml_content):
             with open(xml_content, "r", encoding="utf-8") as file_:
                 content = file_.read()
-        tree = ET.parse(content)
+        tree = ET.fromstring(content)
         root = tree.getroot()
 
         if not schema.is_valid(root):
