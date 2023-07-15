@@ -71,9 +71,10 @@ def request_law_text(
 
 
 def request_law_content(
-    version: int, law_id_or_law_number: str,
-    article: Optional[str] = None, paragraph: Optional[str] = None,
-    appdx_table: Optional[str] = None, timeout: float = TIMEOUT_SEC
+    version: int, law_number: Optional[str] = None,
+    law_id: Optional[str] = None, article: Optional[str] = None,
+    paragraph: Optional[str] = None, appdx_table: Optional[str] = None,
+    timeout: float = TIMEOUT_SEC
 ) -> str:
     """
     Acquire the content of the current law/ordinance.
@@ -82,8 +83,10 @@ def request_law_content(
     ----------
     version : int
         Version number of the e-Gov eLaw API.
-    law_id_or_law_number : str
-        Law ID or law number.
+    law_number : str
+        Law number.
+    law_id : str
+        Law ID.
     article : str, optional
         Article number. Defaults to None.
     paragraph : str, optional
@@ -103,15 +106,22 @@ def request_law_content(
     requests.exceptions.RequestException
         If an error occurs during the API request.
     ValueError
-        If the given combination of article, paragraph, and appdx_table
+        If both law_number and law_id are given.
+        Elst if the given combination of article, paragraph, and appdx_table
         is invalid.
     """
+    if law_number and law_id:
+        raise ValueError(
+            "Only one of (law_number, law_id) is acceptable.")
     if (article and appdx_table) or (paragraph and appdx_table):
         raise ValueError(
             "Invalid combination of article, paragraph, and appdx_table.")
 
     url = f"https://elaws.e-gov.go.jp/api/{version}/articles;"
-    url += f"lawNum={law_id_or_law_number};"
+    if law_number is not None:
+        url += f"lawNum={law_number};"
+    if law_id is not None:
+        url += f"lawId={law_id};"
     if article is not None:
         url += f"article={article};"
     if paragraph is not None:
