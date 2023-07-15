@@ -115,7 +115,7 @@ class LawNameInfoElement:
         """
         law_id = elem.find("LawId").text
         law_name = elem.find("LawName").text
-        law_number = elem.find("LawNum").text
+        law_number = elem.find("LawNo").text
         promulgation_date = elem.find("PromulgationDate").text
         return LawNameInfoElement(law_id, law_name, law_number, promulgation_date)
 
@@ -163,7 +163,7 @@ class LawNameListInfo:
             LawNameInfoElement object with the information from the XML element.
         """
         list_ = [
-            LawNameInfoElement(law_info_elem)
+            LawNameInfoElement.from_elem(law_info_elem)
             for law_info_elem in elem.findall("LawNameListInfo")
         ]
         return LawNameListInfo(list_)
