@@ -1,4 +1,7 @@
+import glob
 from setuptools import setup, find_packages
+
+schemas = sorted(glob.glob('elaws_api_python/schema/*.xsd'))
 
 setup(
     name='elaws-api-python',
@@ -11,6 +14,9 @@ setup(
     author_email='take90-it09-easy27@outlook.jp',
     license='MIT',
     packages=find_packages(),
+    data_files=[
+        ('elaws_api_python/schema', schemas)
+    ],
     install_requires=[
         'requests',
         'xmlschema'
