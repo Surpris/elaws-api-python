@@ -405,19 +405,23 @@ class ListOfLaws:
         Path to the XML data file.
     """
 
-    def __init__(self, xml_path: str) -> None:
+    def __init__(self, xml_content: str) -> None:
         """
         Initialize the DataRoot object by loading XML data from the specified path.
         
         Parameters
         ----------
-        xml_path : str
-            Path to the XML data file.
+        xml_content : str
+            Content or path to the XML data file.
         """
 
         # XML data validation
         schema = XMLSchema(SCHEMA_PATH)
-        tree = ET.parse(xml_path)
+        content = xml_content
+        if os.path.exists(xml_content):
+            with open(xml_content, "r", encoding="utf-8") as file_:
+                content = file_.read()
+        tree = ET.parse(content)
         root = tree.getroot()
 
         if not schema.is_valid(root):
