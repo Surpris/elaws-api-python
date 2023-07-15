@@ -19,10 +19,14 @@ class ApplData:
 
     Attributes
     ----------
-    category : int, optional
-        Law type category.
-    law_name_list_info : LawNameListInfo
-        List of law and ordinance information.
+    law_id : str, optional
+        Law id.
+    law_number : str, optional
+        Law number.
+    law_full_text : ET.Element, optional
+        The full text.
+    image_data : str, optional
+        Image data.
     """
 
     def __init__(
@@ -76,7 +80,7 @@ class ApplData:
 
 class LawTextResponse:
     """
-    Root structure of the data obrained by `base.request_laws_and_ordinances`.
+    Root structure of the data obrained by `base.request_law_text`.
 
     Attributes
     ----------
