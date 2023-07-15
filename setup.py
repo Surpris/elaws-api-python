@@ -14,6 +14,7 @@ setup(
     package_data={
         'elaws_api_python/schema': ['elaws_api_python/schema/*.xsd'],
     },
+    include_package_data=True,
     install_requires=[
         'requests',
         'xmlschema'
