@@ -94,7 +94,7 @@ class LawNameListInfo:
         list_of_info : List[LawNameInfoElement], optional
              List of information about law/ordinance.
         """
-        self._list_of_info: List[LawNameInfoElement] = list_of_info
+        self._list_of_info: Optional[List[LawNameInfoElement]] = list_of_info
         self._index_cache_by_law_name: Dict[str, int] = {}
         self._index_cache_by_keyword: Dict[str, List[int]] = {}
         self._index_cache_by_law_id: Dict[str, int] = {}
