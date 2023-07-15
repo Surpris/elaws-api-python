@@ -1,4 +1,4 @@
-"""laws_and_ordinances_output
+"""laws_and_ordinances
 """
 
 import os
@@ -388,9 +388,9 @@ class ApplData:
         return ApplData(category, law_name_list_info)
 
 
-class DataRoot:
+class ListOfLaws:
     """
-    Root data structure.
+    Root structure of the data obrained by `base.request_laws_and_ordinances`.
 
     Attributes
     ----------
