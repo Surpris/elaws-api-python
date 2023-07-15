@@ -32,7 +32,7 @@ class ApplData:
     def __init__(
         self, law_id: Optional[str] = None,
         law_number: Optional[str] = None,
-        law_full_text: Optional[str] = ET.Element,
+        law_full_text: Optional[ET.Element] = None,
         image_data: Optional[str] = None,
     ) -> None:
         """
