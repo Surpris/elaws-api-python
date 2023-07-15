@@ -9,7 +9,7 @@ from xmlschema import XMLSchema
 
 SCHEMA_PATH: str = os.path.join(
     os.path.dirname(__file__),
-    "../schema/laws_and_odinances_output.xsd"
+    "../schema/list_of_laws_and_odinances_schena.xsd"
 )
 
 
