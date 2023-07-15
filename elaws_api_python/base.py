@@ -37,7 +37,7 @@ def request_laws_and_ordinances(
 
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
-    return response.content
+    return response.text
 
 
 def request_law_text(
@@ -67,7 +67,7 @@ def request_law_text(
     url = f"https://elaws.e-gov.go.jp/api/{version}/lawdata/{law_id_or_law_number}"
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
-    return response.content
+    return response.text
 
 
 def request_law_content(
@@ -118,7 +118,7 @@ def request_law_content(
 
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
-    return response.content
+    return response.text
 
 
 def request_list_of_updated_laws_and_ordinance(
@@ -148,4 +148,4 @@ def request_list_of_updated_laws_and_ordinance(
     url = f"https://elaws.e-gov.go.jp/api/{version}/updatelawlists/{date}"
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
-    return response.content
+    return response.text
