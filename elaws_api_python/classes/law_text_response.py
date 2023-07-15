@@ -68,7 +68,7 @@ class ApplData:
         law_id = elem.find("LawId").text
         law_number = elem.find("LawNum").text
         law_full_text = elem.find("LawFullText")
-        image_data = elem.find("ImageData")
+        image_data = elem.find("ImageData").text
         return ApplData(law_id, law_number, law_full_text, image_data)
 
 
