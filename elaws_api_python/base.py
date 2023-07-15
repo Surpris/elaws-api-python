@@ -112,9 +112,12 @@ def request_law_content(
 
     url = f"https://elaws.e-gov.go.jp/api/{version}/articles;"
     url += f"lawNum={law_id_or_law_number};"
-    url += f"article={article};"
-    url += f"paragraph={paragraph};"
-    url += f"appdxTable={appdx_table}"
+    if article is not None:
+        url += f"article={article};"
+    if paragraph is not None:
+        url += f"paragraph={paragraph};"
+    if appdx_table is not None:
+        url += f"appdxTable={appdx_table}"
 
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
